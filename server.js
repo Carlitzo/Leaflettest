@@ -1,4 +1,4 @@
-import { serveDir } from "https://deno.land/std@0.120.0/http/file_server.ts";
+import { serveDir } from "https://deno.land/std/http/file_server.ts";
 
 // För loggning med stacktrace
 const originalLog = console.log;
