@@ -36,7 +36,7 @@ function renderMap() {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
 
-        console.log(`Spelarens GPS-position: Lat: ${lat}, Lon: ${lon}`);
+        // console.log(`Spelarens GPS-position: Lat: ${lat}, Lon: ${lon}`);
 
         // L.marker([lat, lon]).addTo(map).bindPopup("Din GPS-location").openPopup();
 
