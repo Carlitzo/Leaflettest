@@ -32,43 +32,16 @@ function renderMap() {
     const marker = L.marker([55.6091, 12.9721]); //lägger till en markör för västra hamnen
     marker.addTo(map); //binder markören till kartan
 
-    let userMarker; // Variabel för spelarens markör
-let firstUpdate = true; // Håller koll på första uppdateringen
+    navigator.geolocation.watchPosition((position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
 
-navigator.geolocation.watchPosition(
-  (position) => {
-    const lat = position.coords.latitude;
-    const lon = position.coords.longitude;
+        console.log(`Spelarens GPS-position: Lat: ${lat}, Lon: ${lon}`);
 
-    console.log(`Spelarens GPS-position: Lat: ${lat}, Lon: ${lon}`);
+        L.marker([lat, lon]).addTo(map).bindPopup("Din GPS-location").openPopup();
 
-    if (!userMarker) {
-      // Om markören inte finns, skapa den
-      userMarker = L.marker([lat, lon]).addTo(map).bindPopup("Din GPS-location");
-    } else {
-      // Uppdatera markörens position
-      userMarker.setLatLng([lat, lon]);
-    }
-
-    // Uppdatera popup-texten
-    userMarker.getPopup().setContent(`Lat: ${lat.toFixed(5)}, Lon: ${lon.toFixed(5)}`);
-
-    // Flytta kartan endast vid första uppdateringen
-    if (firstUpdate) {
-      map.setView([lat, lon], 15);
-      firstUpdate = false;
-    }
-  },
-  (error) => {
-    console.error("Fel vid hämtning av GPS-position:", error);
-  },
-  {
-    enableHighAccuracy: true, // Använd GPS för hög precision
-    maximumAge: 0,  // Ingen cache – alltid senaste positionen
-    timeout: 10000  // Vänta max 10 sekunder på position
-  }
-);
-
+        map.setView([lat, lon], 15);
+    })
 }
 
 renderMap();
