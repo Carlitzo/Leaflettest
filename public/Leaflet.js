@@ -41,6 +41,10 @@ function renderMap() {
         L.marker([lat, lon]).addTo(map).bindPopup("Din GPS-location").openPopup();
 
         map.setView([lat, lon], 15);
+    }, {
+        enableHighAccuracy: true,
+        maximumAge: 0,
+        timeout: 10000
     })
 }
 
