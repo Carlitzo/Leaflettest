@@ -32,7 +32,7 @@ function renderMap() {
     const marker = L.marker([55.6091, 12.9721]); //lägger till en markör för västra hamnen
     marker.addTo(map); //binder markören till kartan
 
-    navigator.geolocation.getCurrentPosition((position) => {
+    navigator.geolocation.watchPosition((position) => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
 
