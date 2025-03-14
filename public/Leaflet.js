@@ -41,7 +41,15 @@ function renderMap() {
         L.marker([lat, lon]).addTo(map).bindPopup("Din GPS-location").openPopup();
 
         map.setView([lat, lon], 15);
-    })
+    },
+    
+        console.log("error, no position available"),
+    {
+        enableHighAccuracy: true,
+        maximumAge: 30000,
+        timeout: 10000
+    }
+    )
 }
 
 renderMap();
