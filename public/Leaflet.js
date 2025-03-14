@@ -46,7 +46,7 @@ function renderMap() {
         map.setView([lat, lon], 15);
     },
         (error) => {
-            console.log(`${error} no position available`);
+            console.log(`${error.message} no position available`);
         },
     {
         enableHighAccuracy: true,
