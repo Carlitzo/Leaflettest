@@ -31,19 +31,23 @@ function renderMap() {
 
     const marker = L.marker([55.6091, 12.9721]); //lägger till en markör för västra hamnen
     marker.addTo(map); //binder markören till kartan
+    
+    const userMarker = L.marker([0, 0]);
+    userMarker.addTo(map);
 
     navigator.geolocation.watchPosition((position) => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
 
         console.log(`Spelarens GPS-position: Lat: ${lat}, Lon: ${lon}`);
-
-        L.marker([lat, lon]).addTo(map).bindPopup("Din GPS-location").openPopup();
+        
+        userMarker.setLatLng([lat, lon]).bindPopup("Din GPS-location").openPopup();
 
         map.setView([lat, lon], 15);
     },
-    
-        console.log("error, no position available"),
+        (error) => {
+            console.log(`${error} no position available`);
+        },
     {
         enableHighAccuracy: true,
         maximumAge: 30000,
