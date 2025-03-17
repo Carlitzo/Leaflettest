@@ -51,7 +51,7 @@ function renderMap() {
     {
         enableHighAccuracy: true,
         maximumAge: 30000,
-        timeout: 10000
+        timeout: 30000
     }
     )
 }
